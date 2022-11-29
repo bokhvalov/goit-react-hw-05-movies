@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 import { getMovieDetails } from 'themoviedbAPI';
 
@@ -19,6 +19,7 @@ export const MovieDetails = () => {
   }, [id]);
 
   return (
+    <>
     <div className={css.movieDetails}>
       <img
         className={css.moviePoster}
@@ -39,5 +40,7 @@ export const MovieDetails = () => {
             </p>
       </div>
     </div>
+    <Outlet/>
+    </>
   );
 };
