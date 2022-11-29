@@ -1,0 +1,4 @@
+.movieDetails{
+    display: flex;
+    border-bottom: solid gray 2px;
+}

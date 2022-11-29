@@ -1,7 +1,7 @@
-import MoviesList from "components/MoviesList";
+import MoviesList from "components/MoviesList/MoviesList";
 import { getTrandingMovies } from "themoviedbAPI"
 
-const Home = async () => {
+export const Home = async () => {
 const trandingMovies = await getTrandingMovies();
 
 return (
@@ -10,5 +10,3 @@ return (
     </main>
   );
 };
-
-export default Home;
