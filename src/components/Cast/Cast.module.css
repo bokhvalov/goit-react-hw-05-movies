@@ -1,0 +1,11 @@
+.addInf{
+    padding: 20px 40px;
+    border-bottom: 2px solid grey;
+
+}
+
+.list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}

@@ -24,15 +24,15 @@ export const getMovieDetails = async movieId => {
 
 export const getMovieCredits = async credit_id => {
   const fetchResult = await (
-    await fetch(APIURL + `3/credit/${credit_id}?api_key=${APIKEY}`)
+    await fetch(APIURL + `3/movie/${credit_id}/credits?api_key=${APIKEY}`)
   ).json();
-  return fetchResult.results;
+  return fetchResult;
 };
 
 export const getMovieReviews = async movieId => {
   const fetchResult = await (
-    await fetch(APIURL + `3/review/${movieId}?api_key=${APIKEY}`)
+    await fetch(APIURL + `3/movie/${movieId}/reviews?api_key=${APIKEY}`)
   ).json();
-  return fetchResult.results;
+  return fetchResult;
 };
   

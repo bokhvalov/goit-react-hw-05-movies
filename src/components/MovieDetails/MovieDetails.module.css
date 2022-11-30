@@ -1,4 +1,29 @@
 .movieDetails{
+    margin-top: 20px;
     display: flex;
     border-bottom: solid gray 2px;
+}
+
+h3{
+    margin: 0;
+    padding: 0 0 20px;
+}
+
+.addInf{
+    padding: 20px 40px;
+    border-bottom: 2px solid grey;
+
+}
+
+.addLink{
+    font-size: 18px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: rgb(31, 5, 126);
+}
+
+.addLink:hover{
+    color: blue;
+    margin-right: 10px; 
+    text-decoration: none;
 }

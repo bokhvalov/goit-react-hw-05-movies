@@ -1,12 +1,32 @@
-import MoviesList from "components/MoviesList/MoviesList";
-import { getTrandingMovies } from "themoviedbAPI"
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { getTrandingMovies } from 'themoviedbAPI';
+const MoviesList = lazy(() => import('components/MoviesList/MoviesList'));
 
-export const Home = async () => {
-const trandingMovies = await getTrandingMovies();
+const Home = () => {
+  const [trandingMovies, setTrandingMovies] = useState();
 
-return (
-    <main>
-      <MoviesList movies={trandingMovies} />
-    </main>
-  );
+
+
+  useEffect(() => {
+    const fetchPopular = async () => {
+      const fetchResult = await getTrandingMovies();
+      setTrandingMovies(fetchResult);
+    };
+
+    fetchPopular();
+  }, []);
+
+
+  
+  if (trandingMovies) {
+    return (
+      <main>
+        <Suspense fallback={<div>Loading...</div>}>
+          <MoviesList movies={trandingMovies} />
+        </Suspense>
+      </main>
+    );
+  }
 };
+
+export default Home;

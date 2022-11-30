@@ -1,46 +1,66 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 import { getMovieDetails } from 'themoviedbAPI';
+const { useEffect, useState, Suspense } = require('react');
 
-const { useEffect, useState } = require('react');
-
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { id } = useParams();
+  const location = useLocation();
   const [movieDetails, setMovieDetails] = useState();
+  const backLinkHref = location.state?.from ?? '/movies';
+
 
   useEffect(() => {
     async function getMovie() {
       const fetchResult = await getMovieDetails(id);
       setMovieDetails(fetchResult);
-      console.log(fetchResult);
     }
-
     getMovie();
   }, [id]);
 
-  return (
-    <>
-    <div className={css.movieDetails}>
-      <img
-        className={css.moviePoster}
-        src={'https://image.tmdb.org/t/p/w500/' + movieDetails?.poster_path}
-        alt="movie poster"
-      />
-      <div>
-            <h1>{movieDetails?.original_title}</h1>
-            <p>User Score: {movieDetails?.vote_average * 10}%</p>
+
+  
+  if (movieDetails) {
+    return (
+      <>
+        <Link to={backLinkHref}> Go Back</Link>
+
+        <div className={css.movieDetails}>
+          <img
+            className={css.moviePoster}
+            src={'https://image.tmdb.org/t/p/w500/' + movieDetails.poster_path}
+            alt="movie poster"
+          />
+
+          <div>
+            <h1>{movieDetails.original_title}</h1>
+            <p>User Score: {Math.ceil(movieDetails.vote_average * 10)}%</p>
             <h2>Overview</h2>
             <p>{movieDetails.overview}</p>
             <h2>Genres</h2>
             <p>
-                {movieDetails.genres.map(
+              {movieDetails.genres.map(
                 ({ name }, i) =>
-                    name + (i !== movieDetails.genres.length - 1 ? ', ' : null)
-                )}
+                  name + (i !== movieDetails.genres.length - 1 ? ', ' : '')
+              )}
             </p>
-      </div>
-    </div>
-    <Outlet/>
-    </>
-  );
+          </div>
+        </div>
+        <div className={css.addInf}>
+          <h3>Additional information</h3>
+          <Link to={'cast'} className={css.addLink}>
+            Cast
+          </Link>
+          <Link to={'reviews'} className={css.addLink}>
+            Reviews
+          </Link>
+        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
+      </>
+    );
+  }
 };
+
+export default MovieDetails
