@@ -3,7 +3,6 @@ import MovieDetails from 'components/MovieDetails/MovieDetails';
 import Reviews from 'components/Reviews/Reviews';
 import Home from 'pages/Home/Home';
 import Movies from 'pages/Movies/Movies';
-import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SharedLayout from './components/Layout/SharedLayout';
 
