@@ -5,8 +5,6 @@ const MoviesList = lazy(() => import('components/MoviesList/MoviesList'));
 const Home = () => {
   const [trandingMovies, setTrandingMovies] = useState();
 
-
-
   useEffect(() => {
     const fetchPopular = async () => {
       const fetchResult = await getTrandingMovies();
@@ -15,8 +13,6 @@ const Home = () => {
 
     fetchPopular();
   }, []);
-
-
   
   if (trandingMovies) {
     return (
