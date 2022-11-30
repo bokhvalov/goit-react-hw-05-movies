@@ -21,7 +21,7 @@ const MovieDetails = () => {
 
   
   if (movieDetails) {
-    return (
+    return (  
       <>
         <Link to={backLinkHref}> Go Back</Link>
 
@@ -30,7 +30,7 @@ const MovieDetails = () => {
             className={css.moviePoster}
             src={'https://image.tmdb.org/t/p/w500/' + movieDetails.poster_path}
             alt="movie poster"
-          />
+          />  
 
           <div>
             <h1>{movieDetails.original_title}</h1>
