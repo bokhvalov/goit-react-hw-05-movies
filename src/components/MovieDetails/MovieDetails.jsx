@@ -48,10 +48,10 @@ const MovieDetails = () => {
         </div>
         <div className={css.addInf}>
           <h3>Additional information</h3>
-          <Link to={'cast'} className={css.addLink}>
+          <Link to={'cast'} className={css.addLink} state={{from:location.state?.from}}>
             Cast
           </Link>
-          <Link to={'reviews'} className={css.addLink}>
+          <Link to={'reviews'} className={css.addLink} state={{from:location.state?.from}}>
             Reviews
           </Link>
         </div>
